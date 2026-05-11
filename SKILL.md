@@ -32,18 +32,18 @@ metadata:
 
 ---
 
-## 环境设置
+## 启动预设环境（MUST）
 
 - **显示服务器**：xvfb 监听在 `DISPLAY=:99`
-- **浏览器**：预装 Chromium + XHS Bridge 扩展
-- **启动命令**：
-  ```bash
-  export DISPLAY=:99
-  chromium --no-sandbox --disable-gpu \
-    --load-extension=/root/.openclaw/workspaces/workspace-bot/skills/xiaohongshu-skills/extension/ \
-    --remote-debugging-port=9222 \
-    --user-data-dir=/root/.config/chromium-xhs
-  ```
+- **浏览器**：确保本地安装 Chromium 使用 XHS Bridge 扩展
+  - **启动命令**：
+    ```bash
+    export DISPLAY=:99
+    chromium --no-sandbox --disable-gpu \
+      --load-extension=/path/to/xiaohongshu-skills/extension/ \
+      --remote-debugging-port=9222 \
+      --user-data-dir=/root/.config/chromium-xhs
+    ```
 - 所有 Python 使用 `uv` 包管理器运行，例如 `uv run python scripts/cli.py check-login`
 
 ### 注意事项
@@ -126,7 +126,7 @@ metadata:
 ## 快速开始
 
 ```bash
-# 1. 启动 Chrome
+# 1. 启动 chromium
 python scripts/chrome_launcher.py
 
 # 2. 检查登录状态
@@ -162,6 +162,6 @@ python scripts/cli.py like-feed \
 ## 失败处理
 
 - **未登录**：提示用户执行登录流程（xhs-auth）。
-- **Chrome 未启动**：使用 `chrome_launcher.py` 启动浏览器。
+- **Chromium 未启动**：使用 `chrome_launcher.py` 启动浏览器。
 - **操作超时**：检查网络连接，适当增加等待时间。
 - **频率限制**：降低操作频率，增大间隔。
