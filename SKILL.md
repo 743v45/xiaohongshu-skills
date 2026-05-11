@@ -36,7 +36,7 @@ metadata:
 - 在 Debian 下运行，使用 xvfb 提供虚拟显示环境
 - **显示服务器**：xvfb 监听在 `DISPLAY=:99`
 - **浏览器**：确保本地安装 Chromium 使用 XHS Bridge 扩展
-  - **启动命令**：
+  - **启动命令，使用时必须通过参数传入插件**：
     ```bash
     export DISPLAY=:99
     chromium --no-sandbox --disable-gpu \
