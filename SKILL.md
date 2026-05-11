@@ -13,7 +13,6 @@ metadata:
     emoji: "\U0001F4D5"
     homepage: https://github.com/xpzouying/xiaohongshu-skills
     os:
-      - darwin
       - linux
 ---
 
@@ -34,6 +33,7 @@ metadata:
 
 ## 启动预设环境（MUST）
 
+- 在 Debian 下运行，使用 xvfb 提供虚拟显示环境
 - **显示服务器**：xvfb 监听在 `DISPLAY=:99`
 - **浏览器**：确保本地安装 Chromium 使用 XHS Bridge 扩展
   - **启动命令**：
