@@ -58,16 +58,22 @@ cd xiaohongshu-skills
 uv sync
 ```
 
-### 第二步：安装浏览器扩展
+### 第二步：启动浏览器环境
 
-扩展让 AI 能够在你的浏览器中以你的身份操作小红书，使用的是你真实的登录状态和账号信息。
+在 Debian 环境下使用 xvfb 虚拟显示 + Chromium，通过命令行参数加载 XHS Bridge 扩展：
 
-1. 打开 Chromium，地址栏输入 `chrome://extensions/`
-2. 右上角开启**开发者模式**
-3. 点击**加载已解压的扩展程序**，选择本项目的 `extension/` 目录
-4. 确认扩展 **XHS Bridge** 已启用
+```bash
+# 启动虚拟显示
+export DISPLAY=:99
 
-安装完成后即可使用 — 所有操作都发生在你自己的浏览器里，使用你的真实账号和浏览器环境。
+# 启动 Chromium（必须通过 --load-extension 参数加载扩展）
+chromium --no-sandbox --disable-gpu \
+  --load-extension=/path/to/xiaohongshu-skills/extension/ \
+  --remote-debugging-port=9222 \
+  --user-data-dir=/root/.config/chromium-xhs
+```
+
+所有 Python 脚本使用 `uv` 运行，例如 `uv run python scripts/cli.py check-login`。
 
 ## 使用方式
 
