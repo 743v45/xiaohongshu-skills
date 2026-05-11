@@ -32,6 +32,29 @@ metadata:
 
 ---
 
+## 环境设置
+
+- **显示服务器**：xvfb 监听在 `DISPLAY=:99`
+- **浏览器**：预装 Chromium + XHS Bridge 扩展
+- **启动命令**：
+  ```bash
+  export DISPLAY=:99
+  chromium --no-sandbox --disable-gpu \
+    --load-extension=/root/.openclaw/workspaces/workspace-bot/skills/xiaohongshu-skills/extension/ \
+    --remote-debugging-port=9222 \
+    --user-data-dir=/root/.config/chromium-xhs
+  ```
+- 所有 Python 使用 `uv` 包管理器运行，例如 `uv run python scripts/cli.py check-login`
+
+### 注意事项
+
+- 偶尔遇到小红书风控验证时，系统会自动等待 10 秒重试
+- 无 GUI 环境下，二维码通过在线链接查看
+- 控制操作频率，避免触发风控机制
+- 使用真实用户浏览器和账号环境，数据更可靠
+
+---
+
 ## 输入判断
 
 按优先级判断用户意图，路由到对应子技能：
